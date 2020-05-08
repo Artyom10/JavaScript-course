@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title></title>
+ <style>
+ </style>
+ </head>
+ <body>
+<script>
+//task 1
+	let family = ['Мама', 'Отец', 'Сестра'];
+	family.unshift('Двоюрадный брат 1', 'Двоюрадный брат 2');
+	family.push('Двоюродная сестра 1', 'Двоюродная сестра 2');
+	alert(family.length);
+	alert(family);
+	
+
+	//task 2
+	let arr = [];
+	let answer = 1;
+	let i = 0;
+	
+
+	while ( answer  && arr.length <= 19){
+		arr.push( i+=5);
+	 alert(arr);
+		answer = confirm(`Хотите продолжать вводить числа массива`);
+	 
+	}
+	alert(arr.length);
+	alert(arr.reverse());
+	
+
+	//task 3
+	function distanse(v,t){
+		let s = v * t;
+		alert(`Пройденный путь за ${t} время и ${v} скорость  составит ${s}`);
+		return s;
+	}
+	distanse(3,5);
+	
+
+	//task 4
+	function currentDate(){
+		let now = new Date();
+		return now;
+	}
+	alert(currentDate());
+	
+
+	//task 5
+	function pow(a,b) {
+	 return Math.pow(a,b);
+	}
+	alert(pow(3,3));
+	
+
+	//task 6
+	let sin = 0;
+	for ( sin; sin <= 90; sin+=5)
+	{
+		alert(`Значение синуса при ${sin} градусов равно ${Math.sin(sin / 180 * Math.PI)}`);
+	}
+	
+
+	//task 7
+	function nextDate(){
+		let currentDate = new Date();
+		alert(` Нынешняя дата ${currentDate}`);
+	    currentDate.setDate(currentDate.getDate() + 100);
+	    alert(`Следующая дата через 100 дней ${currentDate}`);
+	    return currentDate;
+	}
+	alert(nextDate());
+	
+
+	//task 8
+	'use strict';
+	function changeCar(inputObject){
+	    return Object.assign({},inputObject, {passengers:35});
+	}
+	
+
+	function tonnage(objectIn){
+	    let cloneObject = {};
+	    for ( let key in objectIn){
+	        cloneObject[key] = objectIn[key];
+	    }
+	    // let cloneObject = Object.create(Object.getPrototypeOf(objectIn), Object.getOwnPropertyDescriptors(objectIn)); Создание клона обьекта другим способом
+	    let truck = Object.assign(cloneObject, {tonnage:1000});
+	    return truck;
+	}
+	
+
+	let car = {
+	    massa:1
+	    };
+	alert(`${car.massa}`);
+	let bus = changeCar(car);
+	alert(`${bus.massa}`);
+	alert(`${bus.passengers}`);
+	alert(`${car.passengers}`);
+	let autoTruck = tonnage(car);
+	alert(`${autoTruck.massa}`);
+	alert(`${autoTruck.tonnage}`);
+
+</script>
+ </body>
+ </html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title></title>
+ <style>
+ </style>
+ </head>
+ <body>
+<script>
+//task 1 
+	function amountNumberRigth(number){ //Второй способ. Работаем конкретно с числом
+	 let str = `${number}`
+	  str = str.length;
+	 let k = 0;
+	 for ( let i = 0; i <= str; i++){
+	 	if ( number % 10 > 1){
+	 		k++;
+	 	}
+	 }
+	 return k - 1;
+	}
+	
+
+	function amountNumber(number){ //Первый способ. Не совсем правильный
+		number = `${number}`;
+		return number.length;
+	}
+	
+
+	alert(amountNumberRigth(123456789));
+	alert(amountNumber(12345));
+	
+
+	//task 2
+	function maxNumber(number){
+	
+
+		number = `${number}`;
+		let arr = number.split('');
+	   let max = Math.max(...arr);
+	   return max;
+	}
+	alert(maxNumber(11346956));
+	
+
+	//task 3
+	function simpleNumber(a) {
+	  if(a <= 2) {
+	    return true;
+	  }
+	  for(let i = 2; i <= a/2; i++) {
+	
+
+	    if(a % i === 0) 
+	      {
+	        return false;
+	      }
+	  }
+	  return true;
+	}
+	alert(simpleNumber(7));
+	
+
+	//task 4
+	function sum(...numbers){
+	  let sum = 0;
+	  for ( let n of numbers) {
+	    sum += n;
+	  }
+	  return sum;
+	}
+	alert(sum(1,2,3));
+	
+
+	//task 5
+	function divisors(number){
+		let result = [];
+	  for ( let i = 0; i <= number; i++)
+	  {
+	  	if ( number % i == 0)
+	  	{
+	       result.push(i);
+	  	}
+	  }
+	  return result;
+	}
+	alert(divisors(15));
+	
+
+	//task 6
+	function range(start,end, step = 1){
+	    let result = [];
+	    if ( start < end) {
+	    for ( start; start <= end; start += step){
+	         result.push(start);
+	    }
+	    return result;
+	    }
+	    else if ( start > end && step < 0){
+	    	for ( start; start >= end; start += step){
+	    		result.push(start);
+	    	}
+	         return result;
+	    }
+	
+
+	}
+	function sum(result){
+	    let sum = 0;
+	    console.log(result);
+	    for ( let key of result){
+	        sum += key;
+	    }
+	
+
+	    return sum;
+	}
+	alert(range(10,1,-2));
+	alert(sum(range(1,10)));
+	alert(sum(range(1,10,2)));
+	
+
+	//task 7
+	function reverseArray(...arr){
+	           return arr.reverse();
+	}
+	function reverseArrayInPlace(arrR){
+		for ( let i = 1; i < arrR.length; i++)
+		{   
+			arrR.unshift(arrR.splice(i,1));		
+		}
+	    return arrR;
+	}
+	alert(reverseArray(1,2,3,4,5));
+	let arrTest = [12,10,78,134];
+	alert(reverseArrayInPlace(arrTest));
+	
+
+	//task 8
+	let amountNumber = (number) => `${number}`.length;
+	
+
+	let maxNumber = function(numberSearch){
+		numberSearch = `${numberSearch}`;
+		let arr = numberSearch.split('');
+	   let max = Math.max(...arr);
+	   return max;
+		
+	};
+	
+
+	let simpleNumber = function(a){
+	       if(a < 2) {
+	    return false;
+	  }
+	  if(a == 2) 
+	    { 
+	      return true;
+	    }
+	  for(let i = 2; i < a; i++) {
+	
+
+	    if(a % i === 0) 
+	      {
+	        return false;
+	      }
+	  }
+	  return true;
+	};
+	
+
+	let sumNumber = function(...numberList){
+	     let sum = 0;
+	  for ( let n of numberList) {
+	    sum += n;
+	  }
+	  return sum;
+	};
+	
+
+	let divisors = function(getNumber){
+	    let result = [];
+	  for ( let i = 0; i <= getNumber; i++)
+	  {
+	  	if ( getNumber % i == 0)
+	  	{
+	       result.push(i);
+	  	}
+	  }
+	  return result;
+	};
+	
+
+	let range = function(start,end, step =1){
+	     let result = [];
+	    if ( start < end) {
+	    for ( start; start <= end; start += step){
+	         result.push(start);
+	    }
+	    return result;
+	    }
+	    else if ( start > end){
+	    	for ( start; start >= end; start -= step){
+	    		result.push(start);
+	    	}
+	         return result;
+	    }
+	};
+	
+
+	let sum = function(massNumber){
+	      let sum = 0;
+	    console.log(massNumber);
+	    for ( let key of massNumber){
+	        sum += key;
+	    }
+	
+
+	    return sum;
+	};
+	
+
+	let reverseArray = (...arr) => arr.reverse();
+	
+
+	let reverseArrayInPlace = function(arrR){
+	    for ( let i = arrR.length; i > 0; i--)
+		{   
+			
+			arrR.push(i);
+			arrR.shift(i);
+		}
+	    return arrR;
+	};
+	
+
+	//task 9
+	function filter(arr, func){
+	  let result = [];
+	  for ( let i = 0; i <= arr.length; i++)
+	  {
+	    let value = arr[i];
+	    if (func(value)){
+	      result.push(value);
+	    }
+	  }
+	  return result;
+	}
+	let arr = [1,2,3,4,5,6,7,8,9,10];
+	alert(filter(arr, function(a) {return a % 2 == 0; } ));
+	
+
+	//task 10
+	let obj = {
+	 a: 10,
+	 b: 12
+	};
+	
+
+	function func(){
+	  alert(this.a);
+	}
+	func.call(obj);
+	
+
+	//task 11
+	let phrase = {
+	   value: 'Привет',
+	};
+	
+
+	function func(surname,name){
+	  alert(`${this.value}, ${surname}, ${name}`);
+	}
+	
+
+	func.call(phrase,'Дима','П');
+	
+
+	//task 12
+	let phrase = {
+	   value: 'Привет',
+	};
+	
+
+	function func(surname,name){
+	  alert(`${this.value}, ${surname}, ${name}`);
+	}
+	
+
+	func.apply(phrase,['Артём','Дима']);
+	
+
+	//task 13
+	let phrase = {
+	    value: 'Привет',
+	};
+	
+
+	function func(surname,name){
+		alert(`${this.value}, ${surname}, ${name}`);
+	}
+	
+
+	let phraseFunc = func.bind(phrase);
+	 phraseFunc('Дима','Петров');
+
+
+</script>
+ </body>
+ </html>

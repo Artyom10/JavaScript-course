@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title></title>
+ <style>
+ </style>
+ </head>
+ <body>
+<script>
+//task 1 
+	function repeatStr(str,repeat){
+	  if( repeat == 1){
+	    return str;
+	  }
+	  else{
+	    return [str, repeatStr(str,repeat -1)];
+	  }
+	}
+	
+
+	alert(repeatStr('Hello world', 5));
+	
+
+	//task 2
+	function removeIn(number){
+		let str = `${number}`;
+		let arr = str.split('');
+		return arr.filter( el => el % 2 == 1 ).join('');
+		
+	}
+	alert(removeIn(523424));
+	
+
+	//task 3
+	
+
+	function memoize(fun) {
+	 const cache = {};
+	 return function(n) {
+	 if (cache[n] !== undefined) {
+	 return cache[n];
+	 }
+	 const result = fun(n);
+	 cache[n] = result;
+	 return result;
+	 };
+	}
+	function sequence(n) {
+	 if (n === 0 || n === 1 || n == 2) return n;
+	 return sequence(n - 1) * sequence(n - 2);
+	}
+	
+
+	const test  = memoize(sequence);
+	console.log(test(1));
+	console.log(test(2));
+	console.log(test(3));
+	console.log(test(4));
+	console.log(test(5));
+	console.log(test(6));
+	console.log(test(7));
+	
+
+	//task 4
+	const memoize = (fn) => {
+	  let cache = {};
+	  return (...args) => {
+	    let n = args[0]; 
+	    if (n in cache) {
+	      console.log('Fetching from cache');
+	      return cache[n];
+	    }
+	    else {
+	      console.log('Calculating result');
+	      let result = fn(n);
+	      cache[n] = result;
+	      return result;
+	    }
+	  }
+	}
+	
+
+	function factorial(n){
+	  if ( n == 0 ){
+	    return 1;
+	  }
+	  else{
+	    return n * factorial(n - 1);
+	  }
+	}
+	
+
+	const checkFunction = memoize(factorial);
+	alert(checkFunction(1));
+	alert(checkFunction(2));
+	alert(checkFunction(3));
+	alert(checkFunction(4));
+	alert(checkFunction(5));
+	alert(checkFunction(3));
+	
+
+	//task 5
+	function memoize(fun) {
+	 const cache = {};
+	 return function(n,b) {
+	 if (cache[n] !== undefined) {
+	 return cache[n];
+	 }
+	 const result = fun(n,b);
+	 cache[n] = result;
+	 return result;
+	 };
+	}
+	
+
+	
+
+	function sequenceRight(maxIndex,b){  //Функция для вычисления члена последовательности
+		if( maxIndex == 1){
+			return b;
+		}
+		else{
+			return (sequenceRight(maxIndex - 1,b) - 1 ) / Math.sqrt(maxIndex);
+		}
+	}
+	
+
+	
+
+	/*function findArrNegativeElements(amountOfNegativeNumbers, ...arg){
+	  for(let i = 0; i < arg.length; i++){
+	    if(arg[i] < 0 ){ 
+	      resultArr.push(arg[i]);
+	    }
+	  }
+	
+
+	  resultArr.length = amountOfNegativeNumbers;
+	  return resultArr;
+	}*/
+	
+
+	function findArrNegativeElements2(amountOfNegativeNumbers, b, f){
+	  let resultArr = [];
+	  let n = 1;
+	  let v = 0;
+	  while(true){
+	    if(v=f(n++,b) < 0){
+	      resultArr.push(v);
+	    }else{
+	      n++
+	    }
+	
+
+	    if(resultArr.length >= amountOfNegativeNumbers) break;
+	  }
+	
+
+	  return resultArr;
+	}
+	
+
+	const test = memoize(sequenceRight);
+	
+
+	//console.log( findArrNegativeElements(10,test(1,1), test(2,1), test(3,1), test(4,1)) );
+	
+
+	console.log( findArrNegativeElements(10,1,test));
+	
+
+	//task 6
+	function add(a,b) {return a + b;} 
+	function mult(a,b,c,d) { return a * b * c * d;}
+	
+
+	let add5 = add.bind(null, 5); //Второй вариант решения используя bind
+	
+
+	alert(add5(3));
+	alert(add5(10));
+	
+
+	let mult23 = mult.bind(null, 2, 3);
+	
+
+	alert(mult23(1,1));
+	alert(mult23(2,2));
+	////////////////////////////////
+	function add(a,b) {return a + b;}
+	function mult(a,b,c,d) { return a * b * c * d;}
+	
+
+	function partial(f, ...args){
+		 return function(...argss) { 
+	    return f.apply(this, args.concat(argss)); 
+	  } 
+	}
+	
+
+	function partialSecond(func, ...args) {
+	  return function(...argsIn) { 
+	    return func.call(this, ...args, ...argsIn);
+	  }
+	}
+	
+
+	let add5 = partial(add, 5);
+	
+
+	alert(add5(3));
+	alert(add5(10));
+	
+
+	let mult23 = partial(mult, 2, 3);
+	
+
+	alert(mult23(1,1));
+	alert(mult23(2,2));
+	
+
+	//task 7
+	function add(a,b) {return a + b;}
+	function mult(a,b,c,d) { return a * b * c * d;}
+	
+
+	function partial(f, ...args){
+		 return function(...argss) { 
+	    return f.apply(this, args.concat(argss)); 
+	  } 
+	}
+	
+
+	function partialAny(f, ...args){
+	   return function(...argss) { 
+	     let arr = args.map((element) => {
+	      if( element == undefined){
+	        return argss.shift();
+	      }
+	      if( element != undefined){
+	          return element;
+	      }
+	     });
+	        return f(...arr.concat(argss));
+	    } 
+	}
+	
+
+	function test(a, b, c){
+	 return `a = ${a} , b = ${b}, c = ${c}`;
+	  }
+	
+
+	
+
+	let test1_3 = partialAny(test, 1, undefined, 3);
+	alert(test1_3(5)); 
+
+
+</script>
+ </body>
+ </html>

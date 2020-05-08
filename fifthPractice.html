@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title></title>
+ <style>
+ </style>
+ </head>
+ <body>
+<script>
+//task 1
+	class Tiles{
+	   constructor(brand, sizeH, sizeW, price){
+	   	this.brand = brand;
+	   	this.sizeH = sizeH;
+	   	this.sizeW = sizeW;
+	   	this.price = price;
+	   }
+	
+
+	   getData(){
+	   			alert(`Брэнд - ${this.brand}, длина - ${this.sizeH}, ширина - ${this.sizeW}, цена - ${this.price}`);
+	   }
+	
+
+	}
+	
+
+	let tileFirst = new Tiles('IKEA', 15, 20, 1500);
+	let tileSecond = new Tiles('Минск', 17, 21, 1550);
+	alert(tileFirst.brand);
+	tileFirst.getData();
+	tileSecond.getData();
+	
+
+	//task 2
+	class Children{
+	  constructor(name,surname,age){
+	    this._name = name;
+	    this._surname = surname;
+	    this._age = age;
+	  }
+	
+
+	  showChildren(){
+	     alert(`Имя - ${this._name} , фамилия - ${this._surname}, возраст - ${this._age}`);
+	  }
+	
+
+	  get ageChildren(){
+	    return this._age;
+	  }
+	
+
+	  get surnameChildren(){
+	    return this._surname;
+	  }
+	
+
+	  get nameChildren(){
+	    return this._name;
+	  }
+	
+
+	  set ageChildren(number) {
+	    if (number < 0) throw new Error("Такого не бывает");
+	    this._age = number;
+	  }
+	
+
+	  set nameChildren(name){
+	    if ( name.length < 2) throw new Error('Такого не бывает');
+	    this._name = name;
+	  }
+	
+
+	  set surnameChildren(surname){
+	    if ( surname.length < 2) throw new Error('Такогоо не бывает');
+	    this._surname = surname;
+	  }
+	  
+	}
+	
+
+	let first = new Children('Pete','Jo', 18);
+	first.showChildren();
+	alert(first.ageChildren);
+	first.nameChildren = 'Артём';
+	first.showChildren();
+	
+
+	//task 3
+	class Matrix{
+	 constructor(row, colum){
+	  this.row = row;
+	  this.colum = colum;
+	 }
+	
+
+	 fillArray(minNumber,maxNumber){
+	   let arr = new Array(this.row); //количество строк
+	
+
+	for (let i = 0; i < this.row; i++) {
+	  arr[i] = new Array(this.colum); //количество столбцов
+	}
+	
+
+	
+
+	for (let i = 0; i < this.row; i++) {
+	  for (let j = 0; j < this.colum; j++) {
+	    arr[i][j] = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+	      }
+	    }
+	    this.arr = arr;
+	    return this.arr;
+	 }
+	
+
+	 get Arr(){
+	  return this.arr;
+	 }
+	
+
+	
+
+	 transpose(){
+	  let copy = [];
+	     let arrLength = this.arr;
+	let original = this.arr
+	    for (let i = 0; i < arrLength.length; ++i) {
+	        for (let j = 0; j < original[i].length; ++j) {
+	           
+	            if (original[i][j] === undefined) continue;
+	            
+	            if (copy[j] === undefined) copy[j] = [];
+	            
+	            copy[j][i] = original[i][j];
+	        }
+	    }
+	    return copy;
+	
+
+	 }
+	
+
+	}
+	
+
+	let firstMatrix = new Matrix(3,3);
+	alert(firstMatrix.fillArray(1,10));
+	alert(firstMatrix.transpose());
+	
+
+	//task 4
+	class userError extends Error{
+	  constructor(message) {
+	    super(message);
+	    this.name = "userError"; 
+	   }
+	  } 
+	
+
+	
+
+	
+
+	  class Time {
+	  constructor(hour, minute, second) {
+	    this.hour = hour;
+	    this.minute = minute;
+	    this.second = second;
+	  }
+	  showTime() {
+	    alert(`${this.hour}:${this.minute}:${this.second}`);
+	  }
+	
+
+	  set Hour(newHour) {
+	    
+	    if (newHour < 0 || newHour >= 24) {
+	      throw new userError("Столько часов не может быть");
+	    }
+	    this.hour = newHour;
+	  }
+	
+
+	  set Minute(newMinute) {
+	    if (newMinute < 0 || newMinute >= 60) {
+	      throw new userError("Столько минут не может быть");
+	    }
+	    this.minute = newMinute;
+	  }
+	
+
+	  set Second(newSecond) {
+	     if (newSecond < 0 || newSecond >= 60) {
+	      throw new userError("Столько секунд не может быть");
+	    }
+	    this.second = newSecond;
+	  }
+	
+
+	  set changeMinute(deltaMinute) {
+	    this.minute += deltaMinute;
+	    let currentDate = new Date();
+	    currentDate.setHours(this.hour);
+	    currentDate.setMinutes(this.minute);
+	    currentDate.setSeconds(this.second);
+	    this.hour = currentDate.getHours();
+	    this.minute = currentDate.getMinutes();
+	    this.second = currentDate.getSeconds();
+	  }
+	
+
+	  set changeSecond(deltaSecond){
+	    this.second += deltaSecond;
+	    let currentDate = new Date();
+	    currentDate.setHours(this.hour);
+	    currentDate.setMinutes(this.minute);
+	    currentDate.setSeconds(this.second);
+	    this.hour = currentDate.getHours();
+	    this.minute = currentDate.getMinutes();
+	    this.second = currentDate.getSeconds();
+	  }
+	
+
+	   set changeHour(deltaHour){
+	    this.hour += deltaHour;
+	    let currentDate = new Date();
+	    currentDate.setHours(this.hour);
+	    currentDate.setMinutes(this.minute);
+	    currentDate.setSeconds(this.second);
+	    this.hour = currentDate.getHours();
+	    this.minute = currentDate.getMinutes();
+	    this.second = currentDate.getSeconds();
+	  }
+	  /*
+	  set changeHour(deltaHour){
+	    if ( this.hour + deltaHour < 24){
+	      this.hour += deltaHour;
+	    }
+	    if( this.hour + deltaHour >= 24) {
+	      this.hour -= deltaHour;
+	      this.hour += deltaHour;
+	      this.hour -= 24;
+	    }
+	  }
+	  */
+	}
+	
+
+	let newTime = new Time(10, 20, 25);
+	try{
+	newTime.Minute = 40;
+	newTime.Second = 90;
+	} catch(err){
+	   if (err instanceof userError) {
+	    alert("Некорректные данные: " + err.message);
+	  } 
+	}
+	newTime.showTime();
+	
+
+	//task 5
+	class Triangle{
+	  
+	 constructor(x1,y1,x2,y2,x3,y3){
+	   this.x1 = x1;
+	   this.y1 = y1;
+	   this.x2 = x2;
+	   this.y2 = y2;
+	   this.x3 = x3;
+	   this.y3 = y3;
+	 }
+	 decideSides(){
+	  let sideFirst = Math.sqrt(((this.x2 - this.x1) * (this.x2 - this.x1)) + ((this.y2 - this.y1) * (this.y2 - this.y1)));
+	  this.sideFirst = sideFirst;
+	   let sideSecond = Math.sqrt(((this.x3 - this.x1) * (this.x3 - this.x1)) + ((this.y3 - this.y1) * (this.y3 - this.y1)));
+	  this.sideSecond = sideSecond;
+	   let sideThird = Math.sqrt(((this.x3 - this.x2) * (this.x3 - this.x2)) + ((this.y3 - this.y2) * (this.y3 - this.y2)));
+	     this.sideThird =  sideThird;
+	  return [ sideFirst, sideSecond, sideThird];
+	 }
+	
+
+	get sideFirst1(){
+	  return this.sideFirst;
+	}
+	
+
+	get sideSecond2(){
+	  return this.sideSecond;
+	}
+	
+
+	get sideThird3(){
+	  return this.sideThird;
+	}
+	
+
+	 calculatePerimetrTriangle(){
+	
+
+	 let perimetr = (this.sideFirst + this.sideSecond + this.sideThird);
+	 this.perimetr = perimetr;
+	  return perimetr 
+	}
+	
+
+	get Perimetr(){
+	  return this.perimetr;
+	}
+	
+
+	
+
+	 calculateSquareTriangle(){
+	  let halfPerimetr = this.perimetr * 0.5;
+	  let square = Math.sqrt(halfPerimetr * (halfPerimetr - this.sideFirst) * (halfPerimetr - this.sideSecond) * (halfPerimetr - this.sideThird));
+	  this.square = square;
+	  return square;
+	 }
+	
+
+	getPoint(){
+	  let resultPointX = (this.x1 + this.x2 + this.x3) / 3;
+	  let resultPointY = (this.y1 + this.y2 + this.y3) / 3;
+	  let resultArr = [];
+	  resultArr.push(resultPointX);
+	  resultArr.push(resultPointY);
+	  return resultArr;
+	}
+	
+
+	get Square(){
+	  return this.square;
+	}
+	
+
+	}
+	
+
+	let triangleOne = new Triangle(0,0,8,2,12,6);
+	triangleOne.decideSides();
+	alert(`Периметр треугольника = ${triangleOne.calculatePerimetrTriangle()}`);
+	alert(`Площадь треугольника = ${triangleOne.calculateSquareTriangle()}`);
+	alert(`Точка пересечения медиан ${triangleOne.getPoint()}`);
+	alert(triangleOne.Perimetr); //Проверяем сможем ли мы получить периметр этого треугольника 
+	alert(triangleOne.Square);
+	
+
+	//task 6
+	class Customer{
+	  constructor(name, surname, middleName, address, numberOfCreditCard, numberOfBankAccount){
+	    this.name = name;
+	    this.surname = surname;
+	    this.middleName = middleName;
+	    this.address = address;
+	    this.numberOfCreditCard = numberOfCreditCard;
+	    this.numberOfBankAccount = numberOfBankAccount;
+	  }
+	
+
+	  showCustomerInformation(){
+	    alert(` Клиент ${this.surname} ${this.name} ${this.middleName}`);
+	    alert(`Адресс клиента ${this.address}, номер кредитной карты ${this.numberOfCreditCard} и номер банковского счёта ${this.numberOfBankAccount}`);
+	  }
+	
+
+	static compare(a,b){
+	  if (a.name > b.name) return 1; 
+	  if (a.name == b.name) return 0; 
+	  if (a.name < b.name) return -1;
+	}
+	
+
+	
+
+	  set Name(nameOfClient){
+	      this.name = nameOfClient;
+	  }
+	
+
+	  set Surname(surnameOfClient){
+	    this.surname = surnameOfClient;
+	  }
+	
+
+	  set mmiddleName(middleNameOfClient){
+	    this.middleName = middleNameOfClient;
+	  }
+	
+
+	  set Address(addressOfClient){
+	    this.address = addressOfClient;
+	  }
+	
+
+	  set creditCard(creditCardNumber){
+	
+
+	    this.numberOfCreditCard = creditCardNumber;
+	  }
+	
+
+	  set bankAccount(bankAccountNumber){
+	    this.numberOfBankAccount =bankAccountNumber;
+	  }
+	
+
+	  get Name(){
+	    return this.name;
+	  }
+	
+
+	  get Surname(){
+	    return this.surname;
+	  }
+	
+
+	  get Address(){
+	    return this.address;
+	  }
+	
+
+	  get creditCard(){
+	    return this.numberOfCreditCard;
+	  }
+	
+
+	  get bankAccount(){
+	    return this.numberOfBankAccount;
+	  }
+	
+
+	  static showName(a){
+	     return a.name;
+	  }
+	
+
+	}
+	
+
+	function rangeNumberOfCreditCard(arr, min, max){
+	  let result = [];
+	   for(let i = 0; i < arr.length; i++){
+	    if( arr[i].numberOfCreditCard >= min && arr[i].numberOfCreditCard <= max){
+	     result.push(arr[i].name);
+	    }
+	   }
+	   return `Информация получена. Имена клиентов с заданным диапазоном номера кредитной карты ${result}`;
+	}
+	
+
+	let customers = [
+	  new Customer('Григорий','Гришин','Александрович','Витебск', 10, 1),
+	  new Customer('Яша','Д','Петров','Минск', 15, 1357900000),
+	  new Customer('Алекандр','Иванов','Петров','Москва', 12, 96564),
+	   new Customer('Коля','Иванов','Петров','Москва', 7, 96564)
+	];
+	//customers[0].showCustomerInformation();
+	//customers[0].Name = 'Витя';
+	//customers[0].showCustomerInformation();
+	customers.sort(Customer.compare);
+	alert(customers.map(Customer.showName));
+	alert(rangeNumberOfCreditCard(customers,1,10));
+	
+
+	//task 7
+	class Point{
+	  constructor(x,y){
+	    this.x = x;
+	    this.y = y;
+	  }
+	
+
+	  showPoints(){
+	    let resultArr = [];
+	    resultArr.push(this.x);
+	    resultArr.push(this.y);
+	    return resultArr;
+	  }
+	
+
+	  set cordinateX(number){
+	    this.x = number;
+	  }
+	
+
+	  set cordinateY(number){
+	    this.y = number;
+	  }
+	
+
+	}
+	
+
+	class GraphicPoint extends Point{
+	    constructor(x,y,color){
+	      super(x,y);
+	      this.color = color;
+	    }
+	    showPoints(){
+	    let resultArr = super.showPoints();
+	    resultArr.push(this.color);
+	    return resultArr;
+	    }
+	}
+	
+
+	let firstPoint = new Point(10,20);
+	alert(firstPoint.showPoints());
+	firstPoint.cordinateX = 5;
+	alert(firstPoint.showPoints());
+	let firstGraphicPoint = new GraphicPoint(100,200,'yellow');
+	alert(firstGraphicPoint.showPoints());
+	firstGraphicPoint.cordinateX = 110;
+	alert(firstGraphicPoint.showPoints());
+	
+
+	//task 8
+	class Line{
+	  constructor(x,y, x2,y2){
+	    this.x = x;
+	    this.y = y;
+	    this.x2 = x2;
+	    this.y2 = y2;
+	  }
+	
+
+	  getAllLine(){
+	    return [ this.x, this.y, this.x2, this.y2];
+	  }
+	
+
+	  get coordinateFirstPoint(){
+	    return [this.x, this.y];
+	  }
+	
+
+	  get coordinateSecondPoint(){
+	    return [ this.x2, this.y2];
+	  }
+	
+
+	  setChangePoint(deltaX,deltaY){
+	    this.x += deltaX;
+	    this.y += deltaY;
+	    this.x2 += deltaX;
+	    this.y2 += deltaY;
+	  }
+	}
+	
+
+	class Rectangle extends Line{
+	constructor(x,y,x2,y2,x3,y3,x4,y4){
+	  super(x,y,x2,y2);
+	  this.x3 = x3;
+	  this.y3 = y3;
+	  this.x4 = x4;
+	  this.y4 = y4;
+	}
+	
+
+	  getAllRectangle(){
+	    return [ ...super.getAllLine(), this.x3, this.y3, this.x4, this.y4];
+	  }
+	
+
+	 setChangeReactangle(deltaX,deltaY){
+	    super.setChangePoint(deltaX, deltaY);
+	    this.x3 += deltaX;
+	    this.y3 += deltaY;
+	    this.x4 += deltaX;
+	    this.y4 += deltaY;
+	 }
+	
+
+	 calculateRectangleSquare(){
+	  let square = Math.abs(this.y - this.y2) * Math.abs(this.x2 - this.x3);
+	  this.square = square;
+	  return square;
+	 }
+	
+
+	 calculateLength(){
+	  let length = Math.abs( this.x2 - this.x3);
+	  this.length = length;
+	  return this.length;
+	 }
+	
+
+	 calculateWidth(){
+	  let width = Math.abs( this.y - this.y2);
+	  this.width = width;
+	  return this.width
+	 }
+	
+
+	 get Length(){
+	  return this.length
+	 }
+	
+
+	 get Width(){
+	  return this.width;
+	 }
+	
+
+	 get rectangleSquare(){
+	  return this.square;
+	 }
+	}
+	
+
+	class Pyramid extends Rectangle{
+	  constructor(x,y,x2,y2,x3,y3,x4,y4,x5,y5){
+	    super(x,y,x2,y2,x3,y3,x4,y4);
+	    this.x5 = x5;
+	    this.y5 = y5;
+	  }
+	
+
+	  getAllPyramid(){
+	    return [ ...super.getAllRectangle(), this.x5, this.y5];
+	  }
+	
+
+	  setChangePyramid(deltaX,deltaY){
+	    super.setChangeReactangle(deltaX,deltaY);
+	    this.x5 += deltaX;
+	    this.y5 += deltaY;
+	  }
+	
+
+	  calculatePyramidHeight(){
+	    let halfDiagonal = Math.sqrt((this.y - this.y2) * (this.y - this.y2) + (this.x2 - this.x3) * (this.x2 - this.x3)) / 2;
+	    let e = Math.sqrt((this.x5 - this.x4) * (this.x5 - this.x4) + (this.y5 - this.y4) * (this.y5 - this.y4));
+	    let height = Math.sqrt( (e * e) / (halfDiagonal * halfDiagonal));
+	    this.height = height;
+	    return height;
+	  }
+	
+
+	  get pyramidHeight(){
+	    return this.height;
+	  }
+	
+
+	  calculatePyramidVolume(){
+	    let volume = (1/3 * this.square * this.height);
+	    this.volume = volume;
+	    return volume;
+	  }
+	
+
+	calculateDetailSquare(){
+	  let firstSquare = 0.5 * Math.abs( (this.x5 - this.x)*(this.y4 - this.y) - (this.x4 - this.x)*(this.y5 - this.y) );
+	  let secondSquare = 0.5 * Math.abs( (this.x5 - this.x4)*(this.y3 - this.y4) - (this.x3 - this.x4)*(this.y5 - this.y4) );
+	  let thirdSquare = 0.5 * Math.abs( (this.x5 - this.x2)*(this.y3 - this.y2) - (this.x3 - this.x2)*(this.y5 - this.y2) );
+	  let fourthSquare = 0.5 * Math.abs( (this.x5 - this.x)*(this.y2 - this.y) - (this.x2 - this.x)*(this.y5 - this.y) );
+	  let squareOfPyramid = firstSquare + secondSquare + thirdSquare + fourthSquare + this.square;
+	  this.squareOfPyramid =squareOfPyramid;
+	  return this.squareOfPyramid;
+	}  
+	
+
+	get pyramidSquare(){
+	  return this.squareOfPyramid;
+	}
+	
+
+	  get pyramidVolume(){
+	    return this.volume;
+	  }
+	} 
+	
+
+	//let lineFirst = new Line(10,16,1,7);
+	//alert(lineFirst.getAllLine());
+	//lineFirst.setChangePoint(5,10);
+	//alert(lineFirst.getAllLine());
+	
+
+	//let rectangleFirst = new Rectangle(4,2,4,8,12,8,12,4);
+	//alert(rectangleFirst.getAllRectangle());
+	//rectangleFirst.setChangeReactangle(10,5);
+	//alert(rectangleFirst.getAllRectangle());
+	//rectangleFirst.calculateRectangleSquare();
+	//alert(rectangleFirst.rectangleSquare);
+	
+
+	let firstPyramid = new Pyramid(4,2,4,8,12,8,12,2,8,12);
+	alert(firstPyramid.getAllPyramid());
+	//firstPyramid.setChangePyramid(1,1);
+	//alert(firstPyramid.getAllPyramid());
+	firstPyramid.calculatePyramidHeight();
+	firstPyramid.calculateRectangleSquare(); 
+	firstPyramid.calculatePyramidVolume();
+	alert(firstPyramid.pyramidHeight);
+	alert(firstPyramid.pyramidVolume);
+	firstPyramid.calculateDetailSquare();
+	alert(firstPyramid.pyramidSquare);
+	//alert(firstPyramid.pyramidVolume);
+	
+
+	//task 9
+	class Figure{
+	  constructor(){
+	    this.points = [];
+	  }
+	   
+	  calculatePerimetr(){
+	    let n = this.points.length;
+	    if ( n == 4){
+	      let perimetr = (this.firstSide + this.secondSide) * 2;
+	      this.perimetr = perimetr;
+	      return this.perimetr;
+	    }
+	    if ( n == 3){
+	      let perimetr = this.firstSide + this.secondSide + this.thirdSide;
+	      this.perimetr = perimetr;
+	      return this.perimetr;
+	    }
+	    if ( n == 1){
+	   let perimetr = Math.PI * 2 * this.radius;
+	    this.perimetr = perimetr;
+	      return this.perimetr;
+	    }
+	  }
+	
+
+	  get Perimetr(){
+	    return this.perimetr;
+	  }
+	
+
+	  calculateSquare(){
+	    let n = this.points.length;
+	    if( n == 3){
+	       let halfPerimetr = (this.firstSide + this.secondSide + this.thirdSide) * 0.5;
+	       let square = Math.sqrt( halfPerimetr * (halfPerimetr - this.firstSide) * (halfPerimetr - this.secondSide) * (halfPerimetr - this.thirdSide));
+	       this.square = square;
+	       return this.square;
+	    }
+	    if( n == 4){
+	      let square = this.firstSide * this.secondSide;
+	      this.square = square;
+	       return this.square;
+	    }
+	    if( n == 1){
+	      let square = Math.PI * this.radius * this.radius;
+	      this.square = square;
+	       return this.square;
+	    }
+	  }
+	
+
+	    get Square(){
+	    return this.square;
+	  }
+	
+
+	
+
+	  showInformation(){
+	   let test = this.points.length;
+	   if( test == 1){
+	    return `Фигура - Окружность. Длина окружности - ${this.perimetr}, площадь ${this.square}`;
+	   }
+	   if( test == 3){
+	    return `Фигура - Треугольник. Периметр - ${this.perimetr}, площадь ${this.square}`;
+	   }
+	   if( test == 4 ){
+	    return `Фигура - Прямоугольник. Периметр - ${this.perimetr}, площадь ${this.square}`;
+	   }
+	  }
+	  static showAll(a){
+	    return `Периметр фигуры: ${a.perimetr}, площадь фигуры: ${a.square}`;
+	  }
+	
+
+	    }
+	
+
+	
+
+	class Rectangle extends Figure{
+	  constructor(firstSide, secondSide, thirdSide, fourthSide){
+	    super();
+	    this.points.push(this.firstSide = firstSide);
+	    this.points.push(this.secondSide = secondSide);
+	    this.points.push(this.thirdSide = thirdSide);
+	    this.points.push(this.fourthSide = fourthSide);
+	  }
+	  
+	
+
+	
+
+	}
+	
+
+	class Triangle extends Figure{
+	  constructor(firstSide, secondSide, thirdSide){
+	    super();
+	    this.points.push(this.firstSide = firstSide);
+	    this.points.push(this.secondSide = secondSide);
+	    this.points.push(this.thirdSide = thirdSide);
+	  }
+	
+
+	}
+	
+
+	
+
+	class Circle extends Figure{
+	    constructor(radius){
+	    super();
+	    this.points.push(this.radius = radius);
+	          }
+	
+
+	}
+	
+
+	let figures = [
+	  new Rectangle(10,4,10,4),
+	  new Triangle(10,4,5),
+	  new Circle(3)
+	];
+	figures[1].calculatePerimetr();
+	figures[0].calculatePerimetr();
+	figures[2].calculatePerimetr();
+	figures[1].calculateSquare();
+	figures[0].calculateSquare();
+	figures[2].calculateSquare();
+	alert(figures[0].showInformation());
+	alert(figures[1].showInformation());
+	alert(figures[2].showInformation());
+	alert( figures.map(Figure.showAll));
+
+
+</script>
+ </body>
+ </html>

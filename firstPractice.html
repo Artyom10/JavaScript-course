@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title></title>
+ <style>
+ </style>
+ </head>
+ <body>
+<script>
+//task 1
+	let str = "Привет";
+	let num = 123;
+	let flag = true;
+	let txt = "true";
+	alert(typeof(str));
+	alert(typeof(num));
+	alert(typeof(flag));
+	alert(typeof(txt));
+	
+
+	//task 2
+	let height = 23;
+	let width = 10;
+	let square = height*width;
+	alert(`Площадь треугольника = ${square}`);
+	
+
+	//task 3
+	let start = 45;
+	let end = 670;
+	while ( start <= end) 
+	{
+		if ( start % 10 == 0 )
+		{
+			alert(start);
+		}
+		start++;
+	}
+	
+
+	//task 4
+	let numberCheck = prompt("Введите трёхзначное число", '');
+	if ( numberCheck % 2 == 0)
+	{
+		let arr = numberCheck.split('');
+		let result = +arr[0] + +arr[1] + +arr[2];
+		alert(`Сумма цифр числа ${numberCheck} = ${result}`);
+	}
+	else {
+		let arr = numberCheck.split('');
+		let result = arr[0] * arr[1] * arr[2];
+		alert(` Умножение цифр числа ${numberCheck} = ${result}`);
+	}
+	
+
+	//task 5
+	let firstNumber = +prompt("Введите число",'');
+	let secondNumber = +prompt("Введите второе число",'');
+	let thirdNumber = +prompt("Введите третье число",'');
+	if ( firstNumber != secondNumber && firstNumber != thirdNumber && secondNumber  != thirdNumber)
+	{
+		let averageNumber = ( firstNumber + secondNumber + thirdNumber) / 3;
+		alert(`Среднее значение этих цифр = ${averageNumber}`);
+	}
+	else {
+		alert("Ошибка");
+	}
+	
+
+	//task 6
+	let start = +prompt("Введите начало диапазона",'');
+	let end = +prompt("Введите конец диапазона",'');
+	for ( start; start <= end; start++)
+	{
+		alert(Math.pow(start,3));
+	}
+	
+
+	//task 7
+	let lastNumber = +prompt("Введите до какой цифры вычислять сумму ",'');
+	let sum = 0;
+	for ( let i = 0; i <= lastNumber; i++)
+	{
+		sum+=i;  //первый способ
+	}
+	alert(sum);
+	
+
+	
+
+	let sumSecond = 0;
+	sumSecond = lastNumber * ((lastNumber+1)/2); //второй способ
+	alert(sumSecond);
+	
+
+	//task 8
+		let start = 100;
+		let end = 200;
+		let sum = 0;
+		for ( start; start < end; start++)
+		{
+			if ( start % 17 == 0)
+			{ 
+				sum += start;
+			}
+		}
+		alert(`Сумма всех чисел от 100 до 200 кратных 17 равно ${sum}`);
+	  
+	  //task 9
+	  let a = +prompt("Введите число ",'');
+	let b = +prompt("Введите второе число",'');
+	let result = Math.pow(a,b);
+	alert(result);
+	
+
+	//task 10
+	let weekDay = +prompt("Введите день недели", '');
+	
+
+	switch (weekDay) {
+	  case 1:
+	    alert("Понедельник");
+	    break;
+	  case 2:
+	    alert("Вторник");
+	    break;
+	  case 3:
+	    alert("Среда");
+	    break;
+	    case 4:
+	    alert("Четверг");
+	    break; 
+	    case 5:
+	    alert("Пятница");
+	    break; 
+	    case 6:
+	    alert("Суббота");
+	    break; 
+	    case 7:
+	    alert("Воскресенье");
+	    break; 
+	  default:
+	    alert( "Вы ввели что то не то" );
+	}
+	
+
+	//task 11
+	let count = 0; //Можно было начать с count = -1 что бы 0 не считался за введённую цифру 
+	let sum =0 ;
+	let result = 0;
+	let putNumber = 0;
+	do{
+	
+
+	putNumber = +prompt("Введите число (0 если хотите остановить программу)",'');
+	sum += putNumber;
+	count++;
+	
+
+	} while( putNumber != 0 )
+	count--;
+	result = sum / count;
+	alert(`Сумма введённых чисел ${sum}, количество введённых чисел ${count}, среднее арифмитическое ${result}`);
+	
+
+	//task 12
+	let number = prompt("Введите четырёхзначное число",'');
+	if ( number.length == 4) {
+	let arr = number.split('');
+	alert(arr);
+	let firstN = arr[0] + arr[1];
+	let secondN = arr[2] + arr[3];
+	let result = +firstN + +secondN; //первый способ
+	alert(` ${firstN} + ${secondN} = ${result} `);
+	
+
+	}
+	else {
+		alert("Вы ввели не четырёхзначное число");
+	}
+	
+
+	let secondNumber = prompt("Введите число",'');
+	let firstSide = secondNumber.slice(0,2);
+	let secondSide = secondNumber.slice(2,4);
+	let secondResult = +firstSide + +secondSide; //второй способ
+	alert(secondResult);
+
+</script>
+ </body>
+ </html>

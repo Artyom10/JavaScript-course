@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title></title>
+ <style>
+ </style>
+ </head>
+ <body>
+<script>
+//task 1
+	function makeTeam() {
+	let players = [];
+	for (let i = 0; i < 10; i++) {
+	var player = function() { // функция-игрок
+	alert( i ); // выводит свой номер
+	};
+	players.push(player);
+	}
+	return players;
+	}
+	let team = makeTeam();
+	team[4](); 
+	team[5](); 
+	
+
+	//task 2
+	const prepareGreenTea = () => 'greenTea';
+	const prepareBlackTea = () => 'blackTea';
+	const getTea = (prepareTea, numOfCups) => {
+	const teaCups = [];
+	for(let cups = 1; cups <= numOfCups; cups += 1) {
+	const teaCup = prepareTea();
+	teaCups.push(teaCup);
+	}
+	return teaCups;
+	};
+	
+
+	
+
+	const tea4GreenTeamFCC = getTea( prepareGreenTea, 27);
+	const tea4BlackTeamFCC = getTea(prepareBlackTea, 13);
+	
+
+	alert(tea4GreenTeamFCC);
+	alert(tea4BlackTeamFCC);
+	
+
+	//task 3
+	let sum = function(){
+	 let result = 0; 
+	 return function(x) {
+	 result += x;
+	  return result;
+	   } 
+	};
+	let sumNumbers = sum();
+	alert(sumNumbers(4)); 
+	alert(sumNumbers(5));
+	
+
+	//task 4
+	function sayName(name) {
+	alert(`Я - ${name}`);
+	};
+	
+
+	
+
+	function miHiOrderFunction(func, ...arg) {
+	 return arg.map(sayName);
+	};
+	miHiOrderFunction(sayName, 'Вася');
+	miHiOrderFunction(sayName, 'Петя', 'Маша', 'John');
+	miHiOrderFunction(sayName, 'Иван', 'Слава', 'Крис', 'Толя');
+	
+
+	//task 5
+	const arr = [2, 15, 20, 45];
+	let newarr = arr.map( (num) => { return num *2 });
+	alert(newarr); 
+	
+
+	//task 6
+	const peopleBirthDate = [2015, 1940, 1990, 1986];
+	let peopleAge = peopleBirthDate.map( (day) => { return 2019 - day});
+	alert(peopleAge);
+	
+
+	//task 7
+	const squareList = (arr) => {
+	 arr = arr.filter( item => Number.isInteger(item) && item > 0);
+	 arr = arr.map( item => item * item);
+	return arr;
+	};
+	
+
+	const squaredIntegers = squareList([-3, 3, 8, 8.2, 4.8, 5, 3, -3.2]);
+	alert(squaredIntegers);
+	
+
+	//task 8
+	let s = [23, 65, 98, 5];
+	Array.prototype.myFilter = function(callback){
+	let newArray = [];
+	 for ( let i = 0; i < this.length; i++)
+	 {
+	 	if ( callback(this[i]))
+	 	{
+	 		newArray.push(this[i]);
+	 	}
+	 }
+	
+
+	return newArray;
+	};
+	let new_s = s.myFilter(function(item){
+	return item % 2 === 1;
+	});
+	alert(new_s);
+	
+
+	//task 9
+	let s = [23, 65, 98, 5];
+	Array.prototype.myReducer = function(callback){
+	let newArray = [];
+	for ( let i = 0; i < this.length; i++)
+	{
+		if ( callback(this[i] % 5 == 0)){
+			newArray.push(this[i]);
+		}
+	}
+	return newArray;
+	};
+	
+
+	let new_s = s.myReducer(function(item){
+	return item % 2 === 1;
+	});
+	alert(new_s);
+	
+
+	//task 10
+	let s = [23, 65, 98, 5];
+	Array.prototype.myMap = function(callback){
+	let newArray = [];
+	for ( let item of this){
+		newArray.push(callback(item));
+	}
+	return newArray;
+	};
+	
+
+	let new_s = s.myMap(function(item){
+	return item * item;
+	});
+	alert(new_s);
+
+
+</script>
+ </body>
+ </html>
